@@ -1,5 +1,5 @@
 # SpaWeb
-Sistema de gestão de clientes e agenda focado em um salão de cabeleireiro.
+Sistema de gestão de clientes e agenda focado em um salão de cabeleireiro desenvolvido entre 2016 e 2018.
 
 Projeto matriz com todos os recursos separados em módulos para ser utilizados nos projetos futuros.
 
@@ -11,6 +11,3 @@ Projeto matriz com todos os recursos separados em módulos para ser utilizados n
 
 # Recursos:
   Emissão de Boletos, NFS-e, Mala de Direta, Dúvidas Frequentes, Tags.
-  
-  
-  2016 à 2018
