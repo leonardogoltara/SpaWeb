@@ -1,0 +1,135 @@
+﻿@model GoltaraSolutions.SpaWeb.Web.Models.ClienteViewModel
+
+@{
+    ViewBag.Title = "Novo Cliente";
+}
+<section class="content-header">
+    <h1 class="box-title">
+        @ViewBag.Title
+    </h1>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-default">
+                @using (Html.BeginForm())
+                {
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary("", new { @class = "alert-danger", @role = "alert" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6 col-lg-6 col-xs-12">
+                                @Html.LabelFor(model => model.Nome)
+                                @Html.EditorFor(model => model.Nome, new
+                               {
+                                   htmlAttributes = new
+                                   {
+                                       @class = "form-control",
+                                       data_toggle = "tooltip",
+                                       data_placement = "bottom",
+                                       title = "Nome do Cliente"
+                                   }
+                               })
+                            </div>
+                            <div class="form-group col-md-6 col-lg-6 col-xs-12">
+                                @Html.LabelFor(model => model.Sexo)
+                                @Html.DropDownListFor(model => model.Sexo, (SelectList)Model.Sexos,
+                                        new
+                                        {
+                                            @id = "select",
+                                            @class = "form-control",
+                                            @data_toggle = "tooltip",
+                                            @data_placement = "bottom",
+                                            @title = "Sexo do Cliente"
+                                        })
+                            </div>
+                            <div class="form-group col-md-6 col-lg-6 col-xs-12">
+                                @Html.LabelFor(model => model.Celular)
+
+                                @Html.EditorFor(model => model.Celular, new
+                               {
+                                   htmlAttributes = new
+                                   {
+                                       @class = "form-control sp_celphones",
+                                       @placeholder = "(00) 00000-0000",
+                                       data_toggle = "tooltip",
+                                       data_placement = "bottom",
+                                       title = "Telefone celular do Cliente"
+                                   }
+                               })
+                            </div>
+                            <div class="form-group col-md-6 col-lg-6 col-xs-12">
+                                @Html.LabelFor(model => model.Telefone)
+                                @Html.EditorFor(model => model.Telefone, new
+                               {
+                                   htmlAttributes = new
+                                   {
+                                       @class = "form-control phone_with_ddd",
+                                       @placeholder = "(00) 0000-0000",
+                                       data_toggle = "tooltip",
+                                       data_placement = "bottom",
+                                       title = "Telefone fixo do Cliente"
+                                   }
+                               })
+
+                            </div>
+                            <div class="form-group col-md-6 col-lg-6 col-xs-12">
+                                @Html.LabelFor(model => model.Email)
+                                @Html.EditorFor(model => model.Email, new
+                               {
+                                   htmlAttributes = new
+                                   {
+                                       @class = "form-control",
+                                       placeholder = "seuemail@email.com",
+                                       data_toggle = "tooltip",
+                                       data_placement = "bottom",
+                                       title = "Email do Cliente"
+                                   }
+                               })
+                            </div>
+                            <div class="form-group col-md-6 col-lg-6 col-xs-12">
+
+                                @Html.LabelFor(model => model.DataNascimento)
+                                @Html.EditorFor(model => model.DataNascimento,
+                                        new
+                                        {
+                                            htmlAttributes = new
+                                            {
+                                                @class = "datepicker form-control date",
+                                                @placeholder = "__/__/____",
+                                                data_toggle = "tooltip",
+                                                data_placement = "top",
+                                                title = "Data de nascimento do Cliente"
+                                            }
+                                        })
+                            </div>
+                            <div class="form-group col-md-6 col-lg-6 col-xs-12">
+                                @Html.LabelFor(model => model.Origem)
+
+                                @Html.DropDownListFor(model => model.OrigemSelecionada, (SelectList)Model.Origens, new
+                               {
+                                   @class = "form-control select2",
+                                   data_toggle = "tooltip",
+                                   data_placement = "bottom",
+                                   title = "Como o Cliente nos conheceu?"
+                               })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a href="@Url.Action("Index")" class="btn btn-default btn-sm"><i class="fa fa-arrow-left"></i> Voltar</a>
+                                <button type="submit" class="btn btn-primary btn-sm pull-right"><i class="fa fa-save"></i> Salvar</button>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>

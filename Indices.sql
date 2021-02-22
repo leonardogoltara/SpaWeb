@@ -1,0 +1,77 @@
+﻿USE [dbSpaWeb]
+
+GO
+
+SET ANSI_PADDING ON
+
+
+GO
+
+CREATE NONCLUSTERED INDEX [Cliente_EmpresaDeletado_NomeTelefoneCelular] ON [Cliente].[Cliente]
+(
+	[IdEmpresa] ASC,
+	[Deletado] DESC
+)
+INCLUDE ( 	[Nome],
+	[Telefone],
+	[Celular]) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)
+
+GO
+
+
+
+CREATE NONCLUSTERED INDEX [Origem_EmpresaDeletado_Nome] ON [Cliente].[Origem]
+(
+	[IdEmpresa] ASC,
+	[Deletado] DESC
+)
+INCLUDE ( 	[Nome] ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)
+
+GO
+
+
+CREATE NONCLUSTERED INDEX [Servico_EmpresaDeletado_Nome] ON [Servico].[Servico]
+(
+	[IdEmpresa] ASC,
+	[Deletado] DESC
+)
+INCLUDE ( [Nome] ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)
+
+GO
+
+
+
+CREATE NONCLUSTERED INDEX [Produto_EmpresaDeletado_Nome] ON [Produto].[Produto]
+(
+	[IdEmpresa] ASC,
+	[Deletado] DESC
+)
+INCLUDE ( [Nome] ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)
+
+GO
+
+
+CREATE NONCLUSTERED INDEX [Funcionario_EmpresaDeletado_Nome] ON [Funcionario].[Funcionario]
+(
+	[IdEmpresa] ASC,
+	[Deletado] DESC
+)
+INCLUDE ( [Nome] ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)
+
+GO
+
+CREATE NONCLUSTERED INDEX [Atendimento_Relatorio] ON [Agenda].[Atendimento]
+(
+	[DataHora] DESC,
+	[IdCliente] ASC,
+	[IdServico] ASC,
+	[IdFuncionario] ASC,
+	[Cancelado] ASC,
+	[Concluido] ASC,
+	[Confirmado] ASC,
+	[IdEmpresa] ASC
+)
+INCLUDE ( [Valor]) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)
+GO
+
+

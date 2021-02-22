@@ -1,0 +1,137 @@
+﻿@model GoltaraSolutions.SpaWeb.Web.Models.AtendimentoViewModel
+@{
+    ViewBag.Title = Model.DataHora.ToString("dd/MM/yyyy HH:mm") + " - " + Model.Cliente.Nome;
+}
+<section class="content-header">
+    <h1 class="box-title">
+        @ViewBag.Title
+    </h1>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-default">
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Cliente, new { @class = "label-detail" })
+                                @Html.DisplayFor(m => m.Cliente.Nome)
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Funcionario, new { @class = "label-detail" })
+                                @Html.DisplayFor(m => m.Funcionario.Nome)
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Valor, new { @class = "label-detail" })
+                                @Html.DisplayFor(m => m.Valor)
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Servico, new { @class = "label-detail" })
+                                @Html.DisplayFor(m => m.Servico.Nome)
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.DataHora, new { @class = "label-detail" })
+                                @Html.DisplayFor(m => m.DataHora)
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.UsuarioAgendou, new { @class = "label-detail" })
+                                @Html.DisplayFor(m => m.UsuarioAgendou)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-footer">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <a href="@Url.Action("Index")" class="btn btn-default btn-sm pull-left"><i class="fa fa-arrow-left"></i> Voltar</a>
+                                <span class="pull-right">
+                                    @{ if (Model.Concluido != true && Model.Cancelado != true)
+                                        {
+                                            <a href="#" data-toggle="modal" data-target="#modalConcluir" class="btn btn-success btn-sm"><i class="fa fa-check"></i> Concluir</a>
+                                            <a href="@Url.Action("Edit","Atendimento", new { @id = Model.Id } )" class="btn btn-danger btn-sm"><i class="fa fa-edit"></i> Editar</a>
+                                            <a href="#" data-toggle="modal" data-target="#modalCancel" class="btn btn-primary btn-sm"><i class="fa fa-trash"></i> Cancelar</a>
+                                        }
+                                    }
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Modal de Desativação -->
+<div class="modal fade" id="modalCancel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Cancelar Atendimento</h4>
+            </div>
+            @using (Html.BeginForm("Cancel", "Atendimento", new { @id = Model.Id }, FormMethod.Post, new { @class = "form-horizontal", @role = "form" }))
+            {
+                <div class="modal-body">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <label class="alert alert-dismissible alert-warning">
+                                <b>Atenção!</b> Quando um atendimento é cancelado, ele não poderá mais ser editado.
+                            </label>
+
+                            <p>Você tem certeza que deseja <b>cancelar</b> este atendimento ?</p>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary pull-right">Confirmar</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!-- Modal de Ativa -->
+<div class="modal fade" id="modalConcluir" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Concluir Atendimento</h4>
+            </div>
+            @using (Html.BeginForm("Concluir", "Atendimento", new { @id = Model.Id }, FormMethod.Post, new { @role = "form" }))
+            {
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="alert alert-dismissible alert-warning">
+                                    <b>Atenção!</b> Quando um atendimento é concluido, ele não poderá mais ser editado.
+                                </label>
+                                <p>Você tem certeza que deseja <b>concluir</b> este atendimento ?</p>
+                            </div>
+
+                            <div class="form-group">
+                                @if (Model.Servico.PrecoFixo != true)
+                                {
+                                    @Html.LabelFor(model => model.Valor, htmlAttributes: new { @class = "label-action" })
+                                    @Html.EditorFor(model => model.Valor, new { htmlAttributes = new { @class = "form-control money2", data_toggle = "tooltip", data_placement = "bottom", title = "Valor final do Atendimento" } })
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary pull-right">Confirmar</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,63 @@
+﻿<!--<log4net debug="true">
+  <appender name="RollingLogFileAppender" type="log4net.Appender.RollingFileAppender">
+    <file value="Logs\log.txt" />
+    <appendToFile value="true" />
+    <rollingStyle value="Size" />
+    <maxSizeRollBackups value="10" />
+    <maximumFileSize value="1000KB" />
+    <staticLogFileName value="true" />
+    <layout type="log4net.Layout.PatternLayout">
+      <conversionPattern value="%date %-4timestamp [%thread] %-5level %logger %newline%message%newline%newline" />
+    </layout>
+  </appender>
+  <root>
+    <level value="WARN" />
+    <appender-ref ref="RollingLogFileAppender" />
+  </root>
+</log4net>-->
+<!--  Log4Net  -->
+<log4net>
+  <logger name="SpaWeb">
+    <level value="ALL" />
+    <appender-ref ref="RollingLogFileAppender" />
+  </logger>
+  <logger name="ALL">
+    <level value="ALL" />
+    <appender-ref ref="RollingLogFileAppender" />
+  </logger>
+  <logger name="INFO">
+    <level value="INFO" />
+    <appender-ref ref="RollingLogFileAppender" />
+  </logger>
+  <logger name="DEBUG">
+    <level value="DEBUG" />
+    <appender-ref ref="RollingLogFileAppender" />
+  </logger>
+  <logger name="WARN">
+    <level value="WARN" />
+    <appender-ref ref="RollingLogFileAppender" />
+  </logger>
+  <logger name="ERROR">
+    <level value="ERROR" />
+    <appender-ref ref="RollingLogFileAppender" />
+  </logger>
+  <logger name="FATAL">
+    <level value="FATAL" />
+    <appender-ref ref="RollingLogFileAppender" />
+  </logger>
+
+  <appender name="RollingLogFileAppender" type="log4net.Appender.RollingFileAppender">
+    <file type="log4net.Util.PatternString" value="Logs\log_%date{yyyyMMdd}.log" />
+    <appendToFile value="true" />
+    <rollingStyle value="Date" />
+    <datePattern value="yyyyMMdd" />
+    <maxSizeRollBackups value="10" />
+    <!--Máximo 3 gigas de log.-->
+    <maximumFileSize value="3145728 KB" />
+    <staticLogFileName value="true" />
+    <layout type="log4net.Layout.PatternLayout">
+      <conversionPattern value=">>> %date [%thread] %-5level%newline%message%newline%newline" />
+    </layout>
+  </appender>
+</log4net>
+<!-- ============= -->

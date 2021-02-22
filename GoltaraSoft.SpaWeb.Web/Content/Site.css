@@ -1,0 +1,38 @@
+﻿.validation-summary-errors {
+    border-radius: 3px;
+    border-color: #d73925;
+}
+
+    .validation-summary-errors ul {
+        list-style-type: none;
+        padding-left: 12px;
+    }
+
+        /*.validation-summary-errors ul li:before {
+            content: "\2192";
+            margin-left: 2px;
+        }*/
+
+    .validation-summary-errors h4 {
+        font-weight: 600;
+    }
+
+    .validation-summary-errors .icon {
+        margin-right: 10px;
+    }
+
+    .validation-summary-errors .close {
+        color: #000;
+        opacity: .2;
+        filter: alpha(opacity=20);
+    }
+
+        .validation-summary-errors .close:hover {
+            opacity: .5;
+            filter: alpha(opacity=50);
+        }
+
+    .validation-summary-errors a {
+        color: #fff;
+        text-decoration: underline;
+    }

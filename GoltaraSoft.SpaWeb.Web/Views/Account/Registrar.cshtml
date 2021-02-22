@@ -1,0 +1,61 @@
+﻿@model GoltaraSoft.SysBeauty.Web.Models.RegistrarViewModel
+@{
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+    ViewBag.Title = "Primeiro Acesso";
+}
+<div class="register-box">
+    <div class="login-logo">
+        <div class="logo"></div>
+    </div>
+    <div class="register-box-body">
+        <div class="text-center">
+            <h3>@ViewBag.Title</h3>
+        </div>
+        <p class="login-box-msg">Dados da Empresa</p>
+        @using (Html.BeginForm("Registrar", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "" }))
+            {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary("", new { @class = "alert-dismissible alert-danger", @role = "alert" })
+                <!-- Nome -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group has-feedback">
+                        @Html.TextBoxFor(m => m.EmpresaCNPJ, new { @class = "form-control cnpj", @placeholder = "CNPJ" })
+                    </div>
+                    <div class="form-group has-feedback">
+                        @Html.TextBoxFor(m => m.EmpresaNome, new { @class = "form-control", @placeholder = "Nome da Empresa" })
+                    </div>
+                    <p class="login-box-msg">Dados do Responsável</p>
+                    <div class="form-group has-feedback">
+                        @Html.TextBoxFor(m => m.Nome, new { @class = "form-control", @placeholder = "Nome" })
+                    </div>
+                    <div class="form-group has-feedback">
+                        @Html.TextBoxFor(m => m.Celular, new { @class = "form-control sp_celphones", @placeholder = "Celular" })
+                    </div>
+                    <p class="login-box-msg">Dados de Acesso</p>
+                    <div class="form-group has-feedback">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "E-mail de acesso" })
+                    </div>
+                    <div class="form-group has-feedback">
+                        @Html.PasswordFor(m => m.Senha, new { @class = "form-control", @placeholder = "*****" })
+                    </div>
+                    <div class="form-group has-feedback">
+                        @Html.PasswordFor(m => m.ConfirmarSenha, new { @class = "form-control", @placeholder = "*****" })
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-8 col-md-8">
+                    <label>
+                        @Html.CheckBoxFor(m => m.Aceite)  Eu aceito os <a href="#">termos</a>
+                    </label>
+                </div>
+                <!-- /.col -->
+                <div class="col-xs-4 col-md-4">
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">Registrar-se</button>
+                </div>
+                <!-- /.col -->
+            </div>
+        }
+    </div>
+</div>

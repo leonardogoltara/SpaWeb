@@ -1,0 +1,67 @@
+﻿@model GoltaraSolutions.Common.Identity.Models.RecuperarSenhaViewModel
+@{
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+    ViewBag.Title = "Recuperar Senha";
+}
+<div class="col-md-offset-3 col-md-6 col-xs-12 wrapper well">
+    <div class="form-horizontal">
+        <fieldset>
+            <legend>@ViewBag.Title</legend>
+            @using (Html.BeginForm("RecuperarSenha", "Account", FormMethod.Post, new { @class = "form-horizontal" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary("", new { @class = "alert-danger", @role = "alert" })
+
+                <div class="form-group hidden">
+                    @Html.LabelFor(m => m.Email, new { @class = "control-label" })
+                    <div class="col-md-4">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                    </div>
+                </div>
+
+                    <!-- Senha -->
+                <div class="form-group">
+                    @*@Html.LabelFor(m => m.Senha, new { @class = "col-md-4 control-label" })*@
+                    <label class="col-md-4 col-sm-12 col-xs-12 control-label"> Nova Senha</label>
+                    <div class="col-md-8 col-sm-12 col-xs-12">
+                        @Html.PasswordFor(m => m.Senha, new
+                   {
+                       @class = "form-control",
+                       placeholder = "******",
+                       data_toggle = "tooltip",
+                       data_placement = "bottom",
+                       title = "Nova senha a ser definida"
+                   })
+                    </div>
+                </div>
+
+                    <!-- Confirmar Senha -->
+                <div class="form-group">
+                    <label class="col-md-4 col-sm-12 col-xs-12 control-label"> Confirmar Nova Senha</label>
+                    @*@Html.LabelFor(m => m.ConfirmarSenha, new { @class = "col-md-4 control-label" })*@
+                    <div class="col-md-8 col-sm-12 col-xs-12">
+                        @Html.PasswordFor(m => m.ConfirmarSenha, new
+                       {
+                           @class = "form-control",
+                           placeholder = "******",
+                           data_toggle = "tooltip",
+                           data_placement = "bottom",
+                           title = "Confirmação da nova senha a ser definida"
+                       })
+                    </div>
+                </div>
+
+                    <div class="form-group hidden">
+                        @Html.LabelFor(m => m.Codigo, new { @class = "control-label" })
+                        <div class="col-md-4">
+                            @Html.TextBoxFor(m => m.Codigo, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div>
+                        <a href="@Url.Action("Index")" class="btn btn-default btn-sm"><i class="fa fa-arrow-left"></i> Voltar</a>
+                        <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-save"></i> Recuperar</button>
+                    </div>
+            }
+        </fieldset>
+    </div>
+</div>

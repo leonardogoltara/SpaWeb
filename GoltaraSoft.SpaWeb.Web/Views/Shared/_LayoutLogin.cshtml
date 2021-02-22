@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="~/favicon.ico" />
+
+    <title>@ViewBag.Title - SpaWeb</title>
+    @*CSS*@
+    @Styles.Render("~/Content/bootstrap-css")
+    @Styles.Render("~/Content/fontawesome-css")
+    @Styles.Render("~/Content/datepicker-css")
+    @Styles.Render("~/Content/login-css")
+    @Styles.Render("~/Content/icheck-css")
+    @Styles.Render("~/Content/adminLTE-css")
+</head>
+<body class="hold-transition login-page">
+    @RenderBody()
+
+    @*JavaScripts*@
+    @Scripts.Render("~/bundles/jquery-js")
+    @Scripts.Render("~/bundles/jquerymask-js")
+    @Scripts.Render("~/bundles/bootstrap-js")
+    @Scripts.Render("~/bundles/popover-js")
+    @Scripts.Render("~/bundles/tooltip-js")
+    @Scripts.Render("~/bundles/datepicker-js")
+    @Scripts.Render("~/bundles/icheck-js")
+
+    @RenderSection("scripts", required: false)
+
+    <script>
+        $(function () {
+            $('input').iCheck({
+                checkboxClass: 'icheckbox_square-blue',
+                radioClass: 'iradio_square-blue',
+                increaseArea: '20%' // optional
+            });
+        });
+    </script>
+</body>
+</html>

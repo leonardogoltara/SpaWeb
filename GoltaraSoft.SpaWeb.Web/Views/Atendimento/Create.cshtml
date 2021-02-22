@@ -1,0 +1,79 @@
+﻿@model GoltaraSolutions.SpaWeb.Web.Models.AtendimentoViewModel
+@{
+    ViewBag.Title = "Agendar Atendimento";
+    if (Model != null)
+    {
+        Model.DataHora = DateTime.Now;
+    }
+}
+@Styles.Render("~/Content/datetimepicker-css")
+
+<section class="content-header">
+    <h1 class="box-title">
+        @ViewBag.Title
+    </h1>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-default">
+                @using (Html.BeginForm())
+                {
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary("", new { @class = "alert-danger", @role = "alert" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6 col-lg-6 col-xs-12">
+                                @Html.LabelFor(model => model.Clientes, htmlAttributes: new { @class = "label-action" })
+                                @Html.DropDownListFor(model => model.IdCliente, (SelectList)Model.Clientes, new { @class = "select2 form-control", data_placeholder = "Pesquise...", data_toggle = "tooltip", data_placement = "bottom", title = "Selecione o Cliente que será atendido" })
+                            </div>
+                            <div class="form-group col-md-6 col-lg-6 col-xs-12">
+                                <label class="label-action">
+                                    Serviço
+                                    <i class="fa fa-info-circle " aria-hidden="true"
+                                       data-toggle="tooltip" data-placement="right"
+                                       data-container="body" title="Serviços que não possuem preço fixo podem ter seu preço alterado no momento de conclusão do atendimento."></i>
+                                </label>
+                                @Html.DropDownListFor(model => model.IdServico, (SelectList)Model.Servicos, new { @class = "select2 form-control", data_placeholder = "Pesquise...", data_toggle = "tooltip", data_placement = "bottom", title = "Selecione o Serviço que o Cliente deseja" })
+                            </div>
+                            <div class="form-group col-md-6 col-lg-6 col-xs-12">
+                                @Html.LabelFor(model => model.Funcionarios, htmlAttributes: new { @class = "label-action" })
+                                @Html.DropDownListFor(model => model.IdFuncionario, (SelectList)Model.Funcionarios, new { @class = "select2 form-control", data_placeholder = "Pesquise...", data_toggle = "tooltip", data_placement = "bottom", title = "Selecione o Funcionário que vai realizar o Serviço" })
+                            </div>
+                            <div class="form-group col-md-6 col-lg-6 col-xs-12">
+                                @Html.LabelFor(model => model.DataHora, htmlAttributes: new { @class = "label-action" })
+                                @Html.EditorFor(model => model.DataHora, new { htmlAttributes = new { @class = "datetimepicker form-control" } })
+                                @Html.ValidationMessageFor(model => model.DataHora, "", new { @for = "inputError", @class = "text-danger", @value = "01/01/1980", data_toggle = "tooltip", data_placement = "bottom", title = "Selecione a Data e Hora que o Serviço será realizado" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a href="@Url.Action("Index")" class="btn btn-default btn-sm"><i class="fa fa-arrow-left"></i> Voltar</a>
+                                <button type="submit" class="btn btn-primary btn-sm pull-right"><i class="fa fa-save"></i> Salvar</button>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts {
+    @Scripts.Render("~/bundles/moment-js")
+    @Scripts.Render("~/bundles/datetimepicker-js")
+
+    <script type="text/javascript">
+        $(function () {
+            $('.datetimepicker').datetimepicker({
+                locale: 'pt-br'
+            });
+        });
+    </script>
+}

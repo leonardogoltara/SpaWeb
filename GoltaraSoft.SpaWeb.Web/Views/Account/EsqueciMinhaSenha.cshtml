@@ -1,0 +1,38 @@
+﻿@model GoltaraSolutions.Common.Identity.Models.EsqueciMinhaSenhaViewModel
+@{
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+    ViewBag.Title = "Esqueci Minha Senha";
+}
+<div class="login-box">
+    <div class="login-logo">
+        <div class="logo"></div>
+    </div>
+    <!-- /.login-logo -->
+    <div class="login-box-body">
+        <div class="text-center">
+            <h3>@ViewBag.Title</h3>
+        </div>
+        <small>Enviaremos um link para o seu e-mail para que você possa alterar sua senha.</small>
+        @using (Html.BeginForm("EsqueciMinhaSenha", "Account", FormMethod.Post, new { role = "form" }))
+    {
+        <div class="form-group has-feedback">
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary("", new { @class = "alert-danger", @role = "alert" })
+        </div>
+        <div class="form-group has-feedback">
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "E-mail" })
+        </div>
+        <div class="row">
+            <div class="col-xs-8 col-md-8 pull-down">
+                @Html.ActionLink("Entrar", "Login")
+            </div>
+            <!-- /.col -->
+            <div class="col-xs-4 col-md-4">
+                <button type="submit" class="btn btn-primary btn-block btn-flat">Enviar</button>
+            </div>
+            <!-- /.col -->
+        </div>
+}
+
+    </div>
+</div>

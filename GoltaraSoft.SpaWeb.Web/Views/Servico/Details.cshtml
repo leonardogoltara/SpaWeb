@@ -1,0 +1,121 @@
+﻿@model GoltaraSolutions.SpaWeb.Web.Models.ServicoViewModel
+
+@{
+    ViewBag.Title = Model.Nome;
+}
+
+<section class="content-header">
+    <h1 class="box-title">
+        @Html.Label(Model.Nome)
+    </h1>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-default">
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Nome, new { @class = "label-detail" })
+                                @Html.DisplayFor(m => m.Nome)
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Preco, new { @class = "label-detail" })
+                                @Html.DisplayFor(m => m.Preco)
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.PrecoFixoString, new { @class = "label-detail" })
+                                @Html.DisplayFor(m => m.PrecoFixoString)
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Ativo, new { @class = "label-detail" })
+                                @Html.DisplayFor(m => m.Ativo)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-footer">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <a href="@Url.Action("Index")" class="btn btn-default btn-sm pull-left"><i class="fa fa-arrow-left"></i> Voltar</a>
+                                <span class="pull-right">
+                                    @{ if (Model.Ativo == "Sim")
+                                        {
+                                            <a href="#" data-toggle="modal" data-target="#modalDelete" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Desativar</a>
+                                        }
+                                    }
+                                    @{ if (Model.Ativo == "Sim")
+                                        {
+                                            <a href="@Url.Action("Edit","Servico", new { @id = Model.Id } )" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Editar</a>
+                                        }
+                                    }
+                                    @{ if (Model.Ativo != "Sim")
+                                        {
+                                            <a href="#" data-toggle="modal" data-target="#modalRecover" class="btn btn-success btn-sm"><i class="fa fa-undo"></i> Ativar</a>
+                                        }
+                                    }
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Modal de Desativação -->
+<div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Desativar Serviço</h4>
+            </div>
+            @using (Html.BeginForm("Delete", "Servico", new { @id = Model.Id }, FormMethod.Post, new { @class = "form-horizontal", @role = "form" }))
+            {
+                <div class="modal-body">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <p>Você tem certeza que deseja <b>desativar</b> o serviço <b>@Model.Nome</b> ?</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary pull-right">Confirmar</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!-- Modal de Ativa -->
+<div class="modal fade" id="modalRecover" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Ativar Serviço</h4>
+            </div>
+            @using (Html.BeginForm("Recover", "Servico", new { @id = Model.Id }, FormMethod.Post, new { @class = "form-horizontal", @role = "form" }))
+            {
+                <div class="modal-body">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <p>Você tem certeza que deseja <b>ativar</b> o serviço <b>@Model.Nome</b> ?</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary pull-right">Confirmar</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,260 @@
+﻿@using GoltaraSolutions.SpaWeb.Web.Models
+@using GoltaraSolutions.Common.Extensions;
+@using GoltaraSolutions.SpaWeb.Domain.AgendaContext.Atendimento;
+@using GoltaraSolutions.SpaWeb.Domain.AgendaContext.Atendimento.ReportViews;
+
+@model GoltaraSolutions.SpaWeb.Web.Models.DashboardViewModel
+@{
+    ViewBag.Title = "Dashboard";
+}
+<section class="content">
+    <div class="row">
+        @if (TempData["Mensagem"] != null && !string.IsNullOrWhiteSpace(TempData["Mensagem"].ToString()))
+        {
+            <div class="alert alert-dismissible alert-success col-md-12 col-sm-12 col-xs-12">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                @TempData["Mensagem"].ToString()
+            </div>
+        }
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="small-box bg-yellow">
+                <div class="inner">
+                    <h3>@Html.DisplayFor(x => x.AtendimentosAbertos)</h3>
+
+                    <p>Abertos</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-calendar-plus-o"></i>
+                </div>
+                <a href="@Url.Action("Index", "Atendimento" ,
+                   new AtendimentoReportViewModel() {Concluido=false,
+                   Cancelado=false,
+                   Status=Status.Aberto,
+                   DataHoraInicial=DateTime.Now.AddDays(-7).FirstHourOfDay(),
+                   DataHoraFinal=DateTime.Now.LastHourOfDay(),
+                   })" class="small-box-footer" aria-hidden="true"
+                   data-toggle="tooltip" data-placement="top" data-container="body"
+                   title="Total de atendimentos agendados nos últimos 7 dias que não foram concluídos e nem cancelados.">
+                    Veja mais <i class="fa fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="small-box bg-red">
+                <div class="inner">
+                    <h3>@Html.DisplayFor(x => x.AtendimentosCancelados)</h3>
+
+                    <p>Cancelados</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-calendar-times-o"></i>
+                </div>
+                <a href="@Url.Action("Index", "Atendimento" ,
+                   new AtendimentoReportViewModel() {Concluido=false,
+                   Cancelado=true,
+                   Status=Status.Cancelado,
+                   DataHoraInicial=DateTime.Now.AddDays(-7).FirstHourOfDay(),
+                   DataHoraFinal=DateTime.Now.LastHourOfDay(),
+                   })" class="small-box-footer" aria-hidden="true"
+                   data-toggle="tooltip" data-placement="top" data-container="body"
+                   title="Total de atendimentos agendados nos últimos 7 dias que foram cancelados.">
+                    Veja mais <i class="fa fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="small-box bg-green">
+                <div class="inner">
+                    <h3>@Html.DisplayFor(x => x.AtendimentosConcluidos)</h3>
+
+                    <p>Concluídos</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-calendar-check-o"></i>
+                </div>
+                <a href="@Url.Action("Index", "Atendimento" ,
+                   new AtendimentoReportViewModel() {Concluido=true,
+                   Cancelado=false,
+                   Status=Status.Concluído,
+                   DataHoraInicial=DateTime.Now.AddDays(-7).FirstHourOfDay(),
+                   DataHoraFinal=DateTime.Now.LastHourOfDay(),
+                   })" class="small-box-footer" aria-hidden="true"
+                   data-toggle="tooltip" data-placement="top" data-container="body"
+                   title="Total de atendimentos agendados nos últimos 7 dias que foram concluídos.">
+                    Veja mais <i class="fa fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="small-box bg-aqua">
+                <div class="inner">
+                    <h3>@Html.DisplayFor(x => x.AtendimentosTodos)</h3>
+
+                    <p>Todos</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-calendar"></i>
+                </div>
+                <a href="@Url.Action("Index", "Atendimento" ,
+                   new AtendimentoReportViewModel() {Concluido=null,
+                   Cancelado=null,
+                   Status=Status.Todos,
+                   DataHoraInicial=DateTime.Now.AddDays(-7).FirstHourOfDay(),
+                   DataHoraFinal=DateTime.Now.LastHourOfDay(),
+                   })" class="small-box-footer" aria-hidden="true"
+                   data-toggle="tooltip" data-placement="top" data-container="body"
+                   title="Total de atendimentos agendados nos últimos 7 dias.">
+                    Veja mais <i class="fa fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-sm-12 col-xs-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <i class="fa fa-star"></i>
+                    Top 10 Clientes
+                    <i class="fa fa-info pull-right" aria-hidden="true"
+                       data-toggle="tooltip" data-placement="left" data-container="body"
+                       title="Clientes que mais foram atendidos em valor nos últimos 30 dias."></i>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body no-padding">
+                    <table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Nome</th>
+                                <th>Valor</th>
+                            </tr>
+                        </thead>
+                        @if (Model.Top10Clientes != null && Model.Top10Clientes.Count > 0)
+                        {
+                            <tbody>
+                                @foreach (var item in Model.Top10Clientes)
+                                {
+                                    <tr>
+                                        <td>@item.Posicao</td>
+                                        <td>@item.ClienteNome</td>
+                                        <td>R$@item.Valor</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        }
+                        else
+                        {
+                            <tbody class="text-muted">
+                                <tr>
+                                    <td colspan="3">
+                                        Nenhum atendimento concluído no período a ser exibido.
+                                    </td>
+                                </tr>
+                            </tbody>
+                        }
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+        </div>
+
+        <div class="col-md-6 col-sm-12 col-xs-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <i class="fa fa-trophy"></i>
+                    Ranking Funcionários
+                    <i class="fa fa-info pull-right" aria-hidden="true"
+                       data-toggle="tooltip" data-placement="left" data-container="body"
+                       title="Funcionários que prestaram mais atendimentos em valor nos últimos 30 dias."></i>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body no-padding">
+                    <table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Nome</th>
+                                <th>Valor</th>
+                            </tr>
+                        </thead>
+                        @if (Model.Top10Funcionarios != null && Model.Top10Funcionarios.Count > 0)
+                        {
+                            <tbody>
+                                @foreach (var item in Model.Top10Funcionarios)
+                                {
+                                    <tr>
+                                        <td>@item.Posicao</td>
+                                        <td>@item.FuncionarioNome</td>
+                                        <td>R$@item.Valor</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        }
+                        else
+                        {
+                            <tbody class="text-muted">
+                                <tr>
+                                    <td colspan="3">
+                                        Nenhum atendimento concluído no período a ser exibido.
+                                    </td>
+                                </tr>
+                            </tbody>
+                        }
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+        </div>
+
+        <div class="col-md-6 col-sm-12 col-xs-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <i class="fa fa-birthday-cake"></i>
+
+                    Clientes Aniversariantes do Mês
+
+                    <i class="fa fa-info pull-right" aria-hidden="true"
+                       data-toggle="tooltip" data-placement="left" data-container="body"
+                       title="Clientes que fazem aniversário neste mês."></i>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body no-padding">
+                    <table class="table table-striped table-hover display responsive nowrap" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Data</th>
+                            </tr>
+                        </thead>
+                        @if (Model.ClientesAniversariantesMes != null && Model.ClientesAniversariantesMes.Count > 0)
+                        {
+                            <tbody>
+                                @foreach (var item in Model.ClientesAniversariantesMes)
+                                {
+                                    <tr>
+                                        <td>@item.Nome  </td>
+                                        <td>@item.DataNascimento</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        }
+                        else
+                        {
+                            <tbody class="text-muted">
+                                <tr>
+                                    <td colspan="2">
+                                        Nenhum cliente faz aniversário este mês.
+                                    </td>
+                                </tr>
+                            </tbody>
+                        }
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+        </div>
+
+    </div>
+</section>

@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A2A07225-0419-43E0-B378-1F30FCF0FA1D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GoltaraSolutions.SpaWeb.Domain.Test</RootNamespace>
+    <AssemblyName>GoltaraSolutions.SpaWeb.Domain.Test</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
+    <IsCodedUITest>False</IsCodedUITest>
+    <TestProjectType>UnitTest</TestProjectType>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="GoltaraSolutions.Common.Domain, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\GoltaraSolutions\GoltaraSolutions.Common.Domain\bin\Release\GoltaraSolutions.Common.Domain.dll</HintPath>
+    </Reference>
+    <Reference Include="GoltaraSolutions.Common.Extensions">
+      <HintPath>..\..\GoltaraSolutions\GoltaraSolutions.Common.Extensions\bin\Release\GoltaraSolutions.Common.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="GoltaraSolutions.Common.Infra.Dependency">
+      <HintPath>..\..\GoltaraSolutions\GoltaraSolutions.Common.Infra.Dependency\bin\Release\GoltaraSolutions.Common.Infra.Dependency.dll</HintPath>
+    </Reference>
+    <Reference Include="GoltaraSolutions.Common.Infra.Dependency.Ninject, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\GoltaraSolutions\GoltaraSolutions.Common.Infra.Dependency.Ninject\bin\Release\GoltaraSolutions.Common.Infra.Dependency.Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="GoltaraSolutions.Common.Infra.Log">
+      <HintPath>..\..\GoltaraSolutions\GoltaraSolutions.Common.Infra.Log\bin\Release\GoltaraSolutions.Common.Infra.Log.dll</HintPath>
+    </Reference>
+    <Reference Include="GoltaraSolutions.Common.Infra.Repository, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\GoltaraSolutions\GoltaraSolutions.Common.Infra.Repository\bin\Release\GoltaraSolutions.Common.Infra.Repository.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+  </ItemGroup>
+  <Choose>
+    <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+      </ItemGroup>
+    </When>
+    <Otherwise>
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+      </ItemGroup>
+    </Otherwise>
+  </Choose>
+  <ItemGroup>
+    <Compile Include="AgendaContext\AtendimentoDomainServicesTestes.cs" />
+    <Compile Include="ClienteContext\ClienteDomainServicesTestes.cs" />
+    <Compile Include="EmpresaContext\EmpresaDomainServicesTestes.cs" />
+    <Compile Include="Infra\EmailTest.cs" />
+    <Compile Include="FuncionarioContext\FuncionarioDomainServicesTestes.cs" />
+    <Compile Include="Pattern\PatternTest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProdutoContext\ProdutoDomainServicesTestes.cs" />
+    <Compile Include="ClienteContext\OrigemDomainServicesTestes.cs" />
+    <Compile Include="ServicoContext\ServicoDomainServicesTestes.cs" />
+    <Compile Include="TestBase.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GoltaraSoft.SpaWeb.CompositionRoot\GoltaraSolutions.SpaWeb.CompositionRoot.csproj">
+      <Project>{7c049a85-c15c-450a-bb2c-da3b77fbc962}</Project>
+      <Name>GoltaraSolutions.SpaWeb.CompositionRoot</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GoltaraSoft.SpaWeb.Domain\GoltaraSolutions.SpaWeb.Domain.csproj">
+      <Project>{9a0abb55-ddb1-46e5-97f3-38d719cb04f1}</Project>
+      <Name>GoltaraSolutions.SpaWeb.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GoltaraSoft.SpaWeb.Infra.Repository.InMemory\GoltaraSolutions.SpaWeb.Infra.Repository.InMemory.csproj">
+      <Project>{B51E4F25-E8C0-4BE6-9F5E-49E5A60FC44E}</Project>
+      <Name>GoltaraSolutions.SpaWeb.Infra.Repository.InMemory</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="log4netConfig.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup />
+  <Choose>
+    <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.CodedUITestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Extension, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITesting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

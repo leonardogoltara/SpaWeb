@@ -1,0 +1,58 @@
+﻿@model GoltaraSolutions.Common.Identity.Models.CadastroViewModel
+@{
+    ViewBag.Title = "Novo Usuário";
+}
+<section class="content-header">
+    <h1 class="box-title">
+        @ViewBag.Title
+    </h1>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-default">
+                @using (Html.BeginForm())
+                {
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary("", new { @class = "alert-danger", @role = "alert" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6 col-lg-6 col-xs-12">
+                                @Html.LabelFor(m => m.Nome, new { @class = "label-action" })
+                                @Html.TextBoxFor(m => m.Nome, new { @class = "form-control", data_toggle = "tooltip", data_placement = "bottom", title = "Nome do Usuário" })
+                            </div>
+                            <div class="form-group col-md-6 col-lg-6 col-xs-12">
+                                @Html.LabelFor(m => m.Email, new { @class = "label-action" })
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "seuemail@email.com", data_toggle = "tooltip", data_placement = "bottom", title = "Email do Usuário" } })
+                            </div>
+                            <div class="form-group col-md-6 col-lg-6 col-xs-12">
+                                @Html.LabelFor(m => m.Senha, new { @class = "label-action" })
+                                @Html.PasswordFor(m => m.Senha, new { @class = "form-control", placeholder = "******", data_toggle = "tooltip", data_placement = "bottom", title = "Senha do Usuário" })
+                            </div>
+                            <div class="form-group col-md-6 col-lg-6 col-xs-12">
+                                @Html.LabelFor(m => m.ConfirmarSenha, new { @class = "label-action" })
+                                @Html.PasswordFor(m => m.ConfirmarSenha, new { @class = "form-control", placeholder = "******", data_toggle = "tooltip", data_placement = "bottom", title = "Confirme a senha do Usuário" })
+                            </div>
+                            <div class="form-group col-md-6 col-lg-6 col-xs-12">
+                                @Html.LabelFor(m => m.Grupo, new { @class = "label-action" })
+                                @Html.EnumDropDownListFor(m => m.Grupo, new { @class = "form-control", data_toggle = "tooltip", data_placement = "bottom", title = "Grupo de acesso" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a href="@Url.Action("Index")" class="btn btn-default btn-sm"><i class="fa fa-arrow-left"></i> Voltar</a>
+                                <button type="submit" class="btn btn-primary btn-sm pull-right"><i class="fa fa-save"></i> Salvar</button>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>

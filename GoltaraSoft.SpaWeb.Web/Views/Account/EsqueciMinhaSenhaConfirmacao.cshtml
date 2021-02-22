@@ -1,0 +1,20 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+    ViewBag.Title = "Esqueci Minha Senha";
+}
+<div class="login-box">
+    <div class="login-logo">
+        <div class="logo"></div>
+    </div>
+    <!-- /.login-logo -->
+    <div class="login-box-body">
+        <div class="text-center">
+            <h3>@ViewBag.Title</h3>
+        </div>
+        <p class="login-box-msg">E-mail enviado com sucesso</p>
+        <p>
+            Por favor, confira seu e-mail para recuperar sua senha.
+        </p>
+        @Html.ActionLink("Entrar", "Login")
+    </div>
+</div>

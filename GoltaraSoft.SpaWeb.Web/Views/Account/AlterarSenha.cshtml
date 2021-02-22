@@ -1,0 +1,51 @@
+﻿@model GoltaraSolutions.Common.Identity.Models.AlterarSenhaViewModel
+@{
+    ViewBag.Title = "Alterar Senha";
+}
+<section class="content-header">
+    <h1 class="box-title">
+        @ViewBag.Title
+        <small>Digite sua nova senha.</small>
+    </h1>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-default">
+                @using (Html.BeginForm("AlterarSenha", "Account", FormMethod.Post))
+                {
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary("", new { @class = "alert-danger", @role = "alert" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="Senha">Nova Senha</label>
+                                    @Html.PasswordFor(m => m.Senha, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="Senha">Confirmar nova Senha</label>
+                                    @Html.PasswordFor(m => m.ConfirmarSenha, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a href="@Url.Action("Index")" class="btn btn-default btn-sm pull-left"><i class="fa fa-arrow-left"></i> Voltar</a>
+                                <button type="submit" class="btn btn-primary btn-sm pull-right"><i class="fa fa-save"></i> Salvar</button>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>

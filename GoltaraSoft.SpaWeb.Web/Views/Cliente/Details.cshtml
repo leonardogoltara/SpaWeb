@@ -1,0 +1,230 @@
+﻿@model GoltaraSolutions.SpaWeb.Web.Models.ClienteViewModel
+@{
+    ViewBag.Title = Model.Nome;
+}
+<section class="content-header">
+    <h1 class="box-title">
+        @Html.Label(Model.Nome)
+    </h1>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-default">
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Nome, new { @class = "label-detail" })
+                                @Html.DisplayFor(m => m.Nome)
+                            </div>
+                            <div class="form-group ">
+                                @Html.LabelFor(m => m.Celular, new { @class = "label-detail" })
+                                @Html.DisplayFor(m => m.Celular)
+                            </div>
+                            <div class="form-group ">
+                                @Html.LabelFor(m => m.Email, new { @class = "label-detail" })
+                                @Html.DisplayFor(m => m.Email)
+                            </div>
+                            <div class="form-group ">
+                                @Html.LabelFor(m => m.Origem, new { @class = "label-detail" })
+                                @Html.DisplayFor(m => m.Origem.Nome)
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group ">
+                                @Html.LabelFor(m => m.Sexo, new { @class = "label-detail" })
+                                @Html.DisplayFor(m => m.Sexo)
+                            </div>
+                            <div class="form-group ">
+                                @Html.LabelFor(m => m.Telefone, new { @class = "label-detail" })
+                                @Html.DisplayFor(m => m.Telefone)
+                            </div>
+                            <div class="form-group ">
+                                @Html.LabelFor(m => m.DataNascimento, new { @class = "label-detail" })
+                                @Html.DisplayFor(m => m.DataNascimento)
+                            </div>
+                            <div class="form-group ">
+                                @Html.LabelFor(m => m.Ativo, new { @class = "label-detail" })
+                                @Html.DisplayFor(m => m.Ativo)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-footer">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <a href="@Url.Action("Index")" class="btn btn-default btn-sm pull-left"><i class="fa fa-arrow-left"></i> Voltar</a>
+                                <span class="pull-right">
+                                    @{ if (Model.Ativo == "Sim")
+                                        {
+                                    <a href="#" data-toggle="modal" data-target="#modalDelete" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Desativar</a>
+                                        }
+                                    }
+                                    @{ if (Model.Ativo == "Sim")
+                                        {
+                                    <a href="@Url.Action("Edit","Cliente", new { @id = Model.Id } )" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Editar</a>
+                                        }
+                                    }
+                                    @{ if (Model.Ativo != "Sim")
+                                        {
+                                    <a href="#" data-toggle="modal" data-target="#modalRecover" class="btn btn-success btn-sm"><i class="fa fa-undo"></i> Ativar</a>
+                                        }
+                                    }
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content-header">
+    <h1 class="box-title">
+        Histórico
+        <small>Atendimentos deste cliente dos últimos 6 meses.</small>
+    </h1>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-default">
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table table-striped table-hover display responsive nowrap" id="dataTableReport" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>Data/Hora</th>
+                                        <th>Funcionário</th>
+                                        <th>Serviço</th>
+                                        <th data-totaliza="true">
+                                            <div class="pull-right">
+                                                Valor
+                                            </div>
+                                        </th>
+                                        <th class="text-center">Status</th>
+                                        <th class="text-center">Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.Historico)
+            {
+                                    <tr class="odd gradeX">
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.DataHora)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Funcionario)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Servico)
+                                        </td>
+                                        <td class="text-right">
+                                            R$@Html.DisplayFor(modelItem => item.Valor)
+                                        </td>
+
+                                        <td class="text-center">
+                                            @{ if (item.Cancelado == true)
+                                                    {
+                                                <span class="label label-primary">Cancelado</span>
+                                                    }
+                                                    if (item.Concluido == true)
+                                                    {
+                                                <span class="label label-success">Concluído</span>
+                                                    }
+                                                    if (item.Concluido != true && item.Cancelado != true)
+                                                    {
+                                                <span class="label label-default">Aberto</span>
+                                                    }
+                                            }
+                                        </td>
+
+                                        <td class="text-center">
+                                            <span class="ficon">
+                                                <a href="@Url.Action("Details", "Atendimento", new { id = item.Id })">
+                                                    <i class="fa fa-eye" aria-hidden="true"></i>
+                                                </a>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                                    }
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th colspan="4" class="text-right">
+                                            Total: <label id="total"></label>
+                                        </th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Modal de Desativação -->
+<div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Desativar Cliente</h4>
+            </div>
+            @using (Html.BeginForm("Delete", "Cliente", new { @id = Model.Id }, FormMethod.Post, new { @class = "form-horizontal", @role = "form" }))
+            {
+                <div class="modal-body">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <h3>Você tem certeza que deseja <b>desativar</b> o cliente <b>@Model.Nome</b> ?</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary pull-right">Confirmar</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!-- Modal de Ativa -->
+<div class="modal fade" id="modalRecover" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Ativar Cliente</h4>
+            </div>
+            @using (Html.BeginForm("Recover", "Cliente", new { @id = Model.Id }, FormMethod.Post, new { @class = "form-horizontal", @role = "form" }))
+            {
+                <div class="modal-body">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <h3>Você tem certeza que deseja <b>ativar</b> o cliente <b>@Model.Nome</b> ?</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary pull-right">Confirmar</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    @Styles.Render("~/Content/datatables-css")
+    @Scripts.Render("~/bundles/moment-js")
+    @Scripts.Render("~/bundles/datatables-js")
+}

@@ -1,0 +1,104 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2027
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03 - Domain", "03 - Domain", "{DFC9A46A-DD5A-4450-9AE7-4E42E7D36241}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05 - Infra", "05 - Infra", "{54B0443F-198A-4791-9B39-44D331103403}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoltaraSolutions.SpaWeb.Domain", "GoltaraSoft.SpaWeb.Domain\GoltaraSolutions.SpaWeb.Domain.csproj", "{9A0ABB55-DDB1-46E5-97F3-38D719CB04F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoltaraSolutions.SpaWeb.Domain.Test", "GoltaraSoft.SpaWeb.Domain.Test\GoltaraSolutions.SpaWeb.Domain.Test.csproj", "{A2A07225-0419-43E0-B378-1F30FCF0FA1D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoltaraSolutions.SpaWeb.Infra.Repository.InMemory", "GoltaraSoft.SpaWeb.Infra.Repository.InMemory\GoltaraSolutions.SpaWeb.Infra.Repository.InMemory.csproj", "{B51E4F25-E8C0-4BE6-9F5E-49E5A60FC44E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoltaraSolutions.SpaWeb.CompositionRoot", "GoltaraSoft.SpaWeb.CompositionRoot\GoltaraSolutions.SpaWeb.CompositionRoot.csproj", "{7C049A85-C15C-450A-BB2C-DA3B77FBC962}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 - UI", "01 - UI", "{7F2D8CC5-5FF7-4C10-B266-B9D90B0BB033}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoltaraSoft.SpaWeb.Web", "GoltaraSoft.SpaWeb.Web\GoltaraSoft.SpaWeb.Web.csproj", "{088609F4-5AFD-4A68-904E-B3AAD12A427D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoltaraSolutions.SpaWeb.Infra.Repository.SQLServer", "GoltaraSoft.SpaWeb.Infra.Repository.SQLServer\GoltaraSolutions.SpaWeb.Infra.Repository.SQLServer.csproj", "{46E5AB6E-E028-4835-9230-A9D19A001D56}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 - Application", "02 - Application", "{D89FC45B-005C-4963-B8A2-F1B7FD5F8207}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "99 - Tests", "99 - Tests", "{8E970EC7-9E44-4434-B7AF-8743E08DCCF4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F3AFE803-CD81-4DD5-B1B3-3FDAFEC3D375}"
+	ProjectSection(SolutionItems) = preProject
+		DropDatabaseForce.sql = DropDatabaseForce.sql
+		Indices.sql = Indices.sql
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoltaraSolutions.SpaWeb.Infra.Report.SQLServer", "GoltaraSolutions.SpaWeb.Infra.Report.SQLServer\GoltaraSolutions.SpaWeb.Infra.Report.SQLServer.csproj", "{CA8371B6-CD7D-4604-AC99-9FF285FECC80}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoltaraSolutions.SpaWeb.Infra.Repository.DapperSQLServer", "GoltaraSolutions.SpaWeb.Infra.Repository.DapperSQLServer\GoltaraSolutions.SpaWeb.Infra.Repository.DapperSQLServer.csproj", "{F957BB1E-1908-4B8B-8612-6C60E4D097A4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04 - Banco", "04 - Banco", "{EEE50A9E-AF73-4B96-B99C-1C400BB72FF7}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "GoltaraSolutions.SpaWeb.Database", "GoltaraSolutions.SpaWeb.Database\GoltaraSolutions.SpaWeb.Database.sqlproj", "{EA558FE4-2DBA-4844-A42E-C1893E1BB955}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9A0ABB55-DDB1-46E5-97F3-38D719CB04F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A0ABB55-DDB1-46E5-97F3-38D719CB04F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A0ABB55-DDB1-46E5-97F3-38D719CB04F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A0ABB55-DDB1-46E5-97F3-38D719CB04F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2A07225-0419-43E0-B378-1F30FCF0FA1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2A07225-0419-43E0-B378-1F30FCF0FA1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2A07225-0419-43E0-B378-1F30FCF0FA1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2A07225-0419-43E0-B378-1F30FCF0FA1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B51E4F25-E8C0-4BE6-9F5E-49E5A60FC44E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B51E4F25-E8C0-4BE6-9F5E-49E5A60FC44E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B51E4F25-E8C0-4BE6-9F5E-49E5A60FC44E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B51E4F25-E8C0-4BE6-9F5E-49E5A60FC44E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C049A85-C15C-450A-BB2C-DA3B77FBC962}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C049A85-C15C-450A-BB2C-DA3B77FBC962}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C049A85-C15C-450A-BB2C-DA3B77FBC962}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C049A85-C15C-450A-BB2C-DA3B77FBC962}.Release|Any CPU.Build.0 = Release|Any CPU
+		{088609F4-5AFD-4A68-904E-B3AAD12A427D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{088609F4-5AFD-4A68-904E-B3AAD12A427D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{088609F4-5AFD-4A68-904E-B3AAD12A427D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{088609F4-5AFD-4A68-904E-B3AAD12A427D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46E5AB6E-E028-4835-9230-A9D19A001D56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46E5AB6E-E028-4835-9230-A9D19A001D56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46E5AB6E-E028-4835-9230-A9D19A001D56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46E5AB6E-E028-4835-9230-A9D19A001D56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA8371B6-CD7D-4604-AC99-9FF285FECC80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA8371B6-CD7D-4604-AC99-9FF285FECC80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA8371B6-CD7D-4604-AC99-9FF285FECC80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA8371B6-CD7D-4604-AC99-9FF285FECC80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F957BB1E-1908-4B8B-8612-6C60E4D097A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F957BB1E-1908-4B8B-8612-6C60E4D097A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F957BB1E-1908-4B8B-8612-6C60E4D097A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F957BB1E-1908-4B8B-8612-6C60E4D097A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA558FE4-2DBA-4844-A42E-C1893E1BB955}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA558FE4-2DBA-4844-A42E-C1893E1BB955}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA558FE4-2DBA-4844-A42E-C1893E1BB955}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{EA558FE4-2DBA-4844-A42E-C1893E1BB955}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA558FE4-2DBA-4844-A42E-C1893E1BB955}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA558FE4-2DBA-4844-A42E-C1893E1BB955}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9A0ABB55-DDB1-46E5-97F3-38D719CB04F1} = {DFC9A46A-DD5A-4450-9AE7-4E42E7D36241}
+		{A2A07225-0419-43E0-B378-1F30FCF0FA1D} = {8E970EC7-9E44-4434-B7AF-8743E08DCCF4}
+		{B51E4F25-E8C0-4BE6-9F5E-49E5A60FC44E} = {54B0443F-198A-4791-9B39-44D331103403}
+		{7C049A85-C15C-450A-BB2C-DA3B77FBC962} = {D89FC45B-005C-4963-B8A2-F1B7FD5F8207}
+		{088609F4-5AFD-4A68-904E-B3AAD12A427D} = {7F2D8CC5-5FF7-4C10-B266-B9D90B0BB033}
+		{46E5AB6E-E028-4835-9230-A9D19A001D56} = {54B0443F-198A-4791-9B39-44D331103403}
+		{CA8371B6-CD7D-4604-AC99-9FF285FECC80} = {54B0443F-198A-4791-9B39-44D331103403}
+		{F957BB1E-1908-4B8B-8612-6C60E4D097A4} = {54B0443F-198A-4791-9B39-44D331103403}
+		{EA558FE4-2DBA-4844-A42E-C1893E1BB955} = {EEE50A9E-AF73-4B96-B99C-1C400BB72FF7}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C78FC3D7-0CAE-4734-BC4E-E012B5E65C8E}
+	EndGlobalSection
+EndGlobal
